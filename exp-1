@@ -1,13 +1,11 @@
-class Solution {
-public:
-    bool containsNearbyDuplicate(vector<int>& nums, int k) {
-        unordered_map<int, int> mp;
+class Solution:
+    def containsNearbyDuplicate(self, nums, k):
+        lastIndex = {}
 
-        for (int i = 0; i < nums.size(); i++) {
-            if (mp.count(nums[i]) && i - mp[nums[i]] <= k)
-                return true;
-            mp[nums[i]] = i;
-        }
-        return false;
-    }
-};
+        for i in range(len(nums)):
+            if nums[i] in lastIndex:
+                if i - lastIndex[nums[i]] <= k:
+                    return True
+            lastIndex[nums[i]] = i
+
+        return False
